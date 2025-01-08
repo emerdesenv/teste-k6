@@ -7,11 +7,11 @@ export const options = {
 };
 
 export default function () {
-    const res = http.get('http://test.k6.io');
+    const resquest = http.get('http://test.k6.io');
 
-    check(res, {
-        'status should be 200': (r) => r.status === 200
+    check(resquest, {
+        'Status deve ser 200': (resquest) => resquest.status === 200
     });
 
-    //sleep(1);
+    sleep(1);
 }
