@@ -1,6 +1,5 @@
 ## Temas Abordados neste Projeto K6
 
-* Testes de carga
 * Simulando vários usuários simultâneos
 * Validando status code com Check
 * Teste de Performance
