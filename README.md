@@ -7,6 +7,7 @@
 * Teste de Carga
 * Teste de Extresse
 * Implementações de métricas de tempo de requisição
+* Implementação para geração de relatórios
 
 ## Primeios passos após o clone do Projeto
 
