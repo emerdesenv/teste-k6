@@ -1,0 +1,2 @@
+MONGO_URI=mongodb+srv://<userdb>:<passdb>@cluster0.r8goc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+TIMEOUT=2000
