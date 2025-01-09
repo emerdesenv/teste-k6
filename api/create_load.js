@@ -2,9 +2,11 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-    vus: 10, // Número de usuários virtuais simultâneos
-    duration: '30s', // Duração do teste,
-    http_req_duration: ['p(90)<2000'] // 90% das requisições devem respondem em até 2 segundos
+    stages: [
+        { duration: '1m', target: 100 },
+        { duration: '2m', target: 100 },
+        { duration: '1m', target: 0}
+    ]
 };
 
 export default function () {

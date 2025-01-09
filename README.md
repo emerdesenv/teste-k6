@@ -3,8 +3,11 @@
 * Testes de carga
 * Simulando vários usuários simultâneos
 * Validando status code com Check
+* Teste de Performance
+* Teste de Fumaça
 * Teste de Carga
 * Teste de Extresse
+* Implementações de métricas de tempo de requisição
 
 ## Primeios passos após o clone do Projeto
 
