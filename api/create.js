@@ -8,13 +8,12 @@ export const options = {
 };
 
 export default function () {
-    const url = 'http://localhost:3000/insert'; // URL da sua API
+    const url = 'http://localhost:3000/api/carros'; // URL da sua API
 
     const payload = JSON.stringify({
-        nome: 'Teste',
-        cidade: 'Joinville',
-        estado: 'SC',
-        idade: Math.floor(Math.random() * 100) // Dados aleatórios para inserir
+        marca: 'Chevrolet',
+        modelo: 'Celta',
+        ano: 2012
     });
 
     const params = {
