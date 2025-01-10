@@ -44,7 +44,3 @@
 ## Teste de API sem MongoDB Clound
 
 * O mesmo configurar o endereço da API nos arquivos de testes e realizar a implementação conforme cada regra
-
-## Desafios e Estudos 
-
-* Cypress Mock e Intercepts
