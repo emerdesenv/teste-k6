@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 
 // Definindo o schema do carro
 const CarroSchema = new mongoose.Schema({

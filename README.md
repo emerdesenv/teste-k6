@@ -44,3 +44,7 @@
 ## Teste de API sem MongoDB Clound
 
 * O mesmo configurar o endereço da API nos arquivos de testes e realizar a implementação conforme cada regra
+
+## Ligando a API Localhost para teste com o ServerRest
+
+* Rodar o comando **npx serverest@latest** em um terminal do seu sistema operacional

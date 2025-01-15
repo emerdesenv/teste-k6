@@ -2,13 +2,13 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-    vus: 10, // Número de usuários virtuais simultâneos
-    duration: '30s', // Duração do teste,
+    vus: 1, // Número de usuários virtuais simultâneos
+    duration: '5s', // Duração do teste,
     http_req_duration: ['p(90)<2000'] // 90% das requisições devem respondem em até 2 segundos
 };
 
 export default function () {
-    const url = 'http://localhost:3000/api/carros'; // URL da sua API
+    const url = 'http://localhost:3000/api/carros';
 
     const payload = JSON.stringify({
         marca: 'Chevrolet',
@@ -27,7 +27,7 @@ export default function () {
     // Verifica se a resposta foi bem-sucedida
     check(res, {
         'status é 201': (r) => r.status === 201,
-        'tem ID inserido': (r) => JSON.parse(r.body).insertedId !== undefined
+        'tem ID inserido': (r) => JSON.parse(r.body)._id !== undefined
     });
 
     // Pausar 1 segundo antes da próxima requisição

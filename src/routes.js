@@ -61,7 +61,7 @@ router.delete('/carros/:id', async (req, res) => {
             return res.status(404).json({ error: 'Carro não encontrado' });
         }
 
-        res.json({ message: 'Carro removido com sucesso' });
+        res.status(200).json({ message: 'Carro removido com sucesso' });
     } catch (error) {
         res.status(500).json({ error: 'Erro ao deletar o carro' });
     }
