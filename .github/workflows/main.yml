@@ -37,9 +37,12 @@ jobs:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI foi setada com sucesso."
 
-      # 4. Rodar os testes K6
+      # 4. Rodar a conexão com o MongoDB
       - name: Rodando os Testes com o K6
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: node app.js
-        run: k6 run api/create.js
+       # 5. Rodar os testes K6
+      - name: Run K6 Tests
+        run: |
+          k6 run api/create.js
