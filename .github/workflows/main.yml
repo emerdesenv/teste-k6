@@ -42,5 +42,5 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: |
-          node build_test.js
+          node app.js
           k6 run api/create.js
