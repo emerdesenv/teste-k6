@@ -7,7 +7,7 @@ const routes = require('./src/routes');
 // Criando a aplicação Express
 const app = express();
 
-const uri = process.env.MONGO_URI;
+const uri = process.env.MONGODB_URI;
 
 // Conectando ao MongoDB
 mongoose.connect(uri)
