@@ -1,0 +1,42 @@
+name: Run K6 Tests with MongoDB Atlas
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-k6-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Verificar o código do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Instalar o K6
+      - name: Install K6
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg software-properties-common
+          curl -s https://dl.k6.io/key.gpg | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install -y k6
+
+      # 3. Configurar variáveis de ambiente para o MongoDB Atlas
+      - name: Set environment variables
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: echo "MongoDB URI is set."
+
+      # 4. Rodar os testes K6
+      - name: Run K6 Tests
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: |
+          node build_test.js
+          k6 run api/create.js
