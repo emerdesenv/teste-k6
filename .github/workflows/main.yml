@@ -46,7 +46,6 @@ jobs:
       - name: Run K6 Tests
         run: |
           k6 run api/create.js
-      - name: Upload dos Testes com K6
       - uses: actions/upload-artifact@v4
         with:
           name: Evidências dos Testes
