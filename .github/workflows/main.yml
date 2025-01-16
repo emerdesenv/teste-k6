@@ -41,7 +41,7 @@ jobs:
       - name: Rodando os Testes com o K6
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: node app.js
+        run: node app.js &
        # 5. Rodar os testes K6
       - name: Run K6 Tests
         run: |
