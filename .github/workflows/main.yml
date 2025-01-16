@@ -17,6 +17,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Instalando npm
+      - name: Instalar dependências do projeto
+        run: npm install
+
       # 2. Instalar o K6
       - name: Install K6
         run: |
