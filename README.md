@@ -35,6 +35,8 @@
 * **k6** - https://grafana.com/docs/k6/latest/
 * **MongoDB Clound** - https://cloud.mongodb.com/
 * **MongoDB Compass** - https://www.mongodb.com/pt-br/docs/compass/current/install/
+* **ServeRest** - https://serverest.dev/
+* **Cron Guru** - https://crontab.guru/
 
 ## Ligando a API Localhost para teste com o MongoDB Clound
 
