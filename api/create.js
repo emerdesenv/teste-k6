@@ -10,7 +10,7 @@ export function handleSummary(data) {
 }
 
 export const options = {
-    vus: 1, // Número de usuários virtuais simultâneos
+    vus: 10, // Número de usuários virtuais simultâneos
     duration: '5s', // Duração do teste,
     http_req_duration: ['p(90)<2000'] // 90% das requisições devem respondem em até 2 segundos
 };
