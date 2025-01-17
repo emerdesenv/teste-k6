@@ -42,11 +42,20 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: node app.js &
-       # 6. Rodar os testes K6
-      - name: Rodando os testes K6
+       - name: Rodar testes k6
         run: |
-          k6 run api/create.js
-      - uses: actions/upload-artifact@v4
+          TEST_FILE="${{ github.event.head_commit.message }}"  # Captura a mensagem do commit
+
+          # Se a mensagem do commit contiver um nome de arquivo de teste, executa esse teste
+          if [[ "$TEST_FILE" =~ ^test_.*\.js$ ]]; then
+            echo "Executando teste específico: $TEST_FILE"
+            k6 run api/$TEST_FILE  # Substitua 'api/' com o caminho da sua pasta de testes
+          else
+            echo "Nenhum teste específico indicado. Executando todos os testes."
+            for test in api/*.js; do
+              k6 run "$test"
+            done
+            - uses: actions/upload-artifact@v4
         with:
           name: Evidências dos Testes
           path: summary.html
