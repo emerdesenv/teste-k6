@@ -2,19 +2,20 @@ name: Rodando K6 Testes com MongoDB Atlas
 
 on:
   push:
-    tags:
-      - 'test*'  # Executa quando uma tag de versão é empurrada
     branches:
       - main
   pull_request:
     branches:
       - main
   workflow_dispatch:  # Permite a execução manual através da interface do GitHub
+    inputs:
+      tag:
+        description: 'create-car'
+        required: true
 
 jobs:
-  run-k6-tests:
+  run_with_tag:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/test')  # Só roda no deploy se a tag começar com 'test'
 
     steps:
       # 1. Verificar o código do repositório
