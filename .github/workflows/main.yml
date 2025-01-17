@@ -15,13 +15,13 @@ jobs:
     steps:
       # 1. Verificar o código do repositório
       - name: Checkout do Repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Instalando npm
+      # 2. Instalando npm
       - name: Instalar dependências do projeto
         run: npm install
 
-      # 2. Instalar o K6
+      # 3. Instalar o K6
       - name: Install K6
         run: |
           sudo apt-get update
@@ -31,19 +31,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y k6
 
-      # 3. Configurar variáveis de ambiente para o MongoDB Atlas
+      # 4. Configurar variáveis de ambiente para o MongoDB Atlas
       - name: Seta as variáveis de ambiente
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI foi setada com sucesso."
 
-      # 4. Rodar a conexão com o MongoDB
-      - name: Rodando os Testes com o K6
+      # 5. Rodar a conexão com o MongoDB
+      - name: Rodando a conexão com o MongoDB
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: node app.js &
-       # 5. Rodar os testes K6
-      - name: Run K6 Tests
+       # 6. Rodar os testes K6
+      - name: Rodando os testes K6
         run: |
           k6 run api/create.js
       - uses: actions/upload-artifact@v4
