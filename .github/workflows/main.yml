@@ -12,7 +12,6 @@ on:
 jobs:
   run-k6-tests:
     runs-on: ubuntu-latest
-    container: grafana/k6:latest
 
     steps:
       # 1. Verificar o código do repositório
@@ -23,21 +22,22 @@ jobs:
       - name: Instalar dependências do projeto
         run: npm install
 
-      # 3. Configurar variáveis de ambiente para o MongoDB Atlas
+      # 4. Configurar variáveis de ambiente para o MongoDB Atlas
       - name: Seta as variáveis de ambiente
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: echo "MongoDB URI foi setada com sucesso."
 
-      # 4. Rodar a conexão com o MongoDB
+      # 5. Rodar a conexão com o MongoDB
       - name: Rodando a conexão com o MongoDB
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: node app.js &
-       # 5. Rodar os testes K6
+       # 6. Rodar os testes K6
       - name: Rodando os testes K6
-        run: |
-          k6 run api/create.js
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: api/create.js
       - uses: actions/upload-artifact@v4
         with:
           name: Evidências dos Testes
