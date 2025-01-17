@@ -8,7 +8,8 @@
 * Teste de Extresse
 * Implementações de métricas de tempo de requisição
 * Implementação para geração de relatórios
-* Implementação do GitHub Actions com o MongoDB Cloud
+* Implementação do GitHub Actions com o MongoDB Cloud + ServerRest
+* Implementação WorkFlow Run Manual
 
 ## Primeios passos após o clone do Projeto
 
