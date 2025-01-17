@@ -24,13 +24,7 @@ jobs:
 
       # 3. Instalar o K6
       - name: Instalando o K6
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gnupg software-properties-common
-          curl -s https://dl.k6.io/key.gpg | sudo apt-key add -
-          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-          sudo apt-get update
-          sudo apt-get install -y k6
+        uses: grafana/k6-action@v0.2.0
 
       # 4. Configurar variáveis de ambiente para o MongoDB Atlas
       - name: Seta as variáveis de ambiente
