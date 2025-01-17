@@ -10,6 +10,7 @@
 * Implementação para geração de relatórios
 * Implementação do GitHub Actions com o MongoDB Cloud + ServerRest
 * Implementação WorkFlow Run Manual
+* Implementação K6 Cloud
 
 ## Primeios passos após o clone do Projeto
 
@@ -30,6 +31,14 @@
 ## Configuração para Projetos que não possui o K6 ou Projetos do Zero
 
 * **Observações**: Seguir a documentação para a instalação do K6 no tópico abaixo (**Documentações de Referências**)
+
+## Instalação das Tecnologias
+
+* **Observações**: Se você já tiver o arquivo **package.json** o mesmo pode ser implementado as instruções em **devDependencies**
+* **Observações**: Se você não tiver o arquivo **package.json** crie o com o comando: **npm init -y** e depois **npm install**
+
+* Rodar o comando no terminal: **npm install @faker-js/faker --save-dev** para instalar o FakerJS
+* Rodar o comando no terminal: **npm install cypress-mongodb --save-dev** para instalar o o MongoDB
 
 ## Documentações de Referências
 
