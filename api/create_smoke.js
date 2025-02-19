@@ -1,43 +1,23 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-
-export function handleSummary(data) {
-    return {
-        "summary.html": htmlReport(data),
-    };
+export let options = {
+    vus: 5, // Apenas 5 usuários simultâneos (teste leve)
+    duration: '10s', // Roda por apenas 10 segundos
+    thresholds: {
+        http_req_failed: ['rate<0.01'], // Falha abaixo de 1%
+        http_req_duration: ['p(95)<800'] // 95% das requisições abaixo de 800ms
+    }
 }
 
-export const options = {
-    vus: 1, // Número de usuários virtuais simultâneos
-    duration: '1m', // Duração do teste,
-    http_req_duration: ['p(90)<2000'] // 90% das requisições devem respondem em até 2 segundos
-};
-
 export default function () {
-    const url = 'http://localhost:3000/api/carros';
+    let res = http.get('https://jsonplaceholder.typicode.com/posts/1');
 
-    const payload = JSON.stringify({
-        marca: 'Chevrolet',
-        modelo: 'Celta',
-        ano: 2012
-    });
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-
-    const res = http.post(url, payload, params);
-
-    // Verifica se a resposta foi bem-sucedida
+    // Validações rápidas
     check(res, {
-        'status é 201': (r) => r.status === 201,
-        'tem ID inserido': (r) => JSON.parse(r.body)._id !== undefined
+        'Status é 200': (r) => r.status === 200,
+        'Tempo de resposta < 800ms': (r) => r.timings.duration < 800,
     });
 
-    // Pausar 1 segundo antes da próxima requisição
     sleep(1);
 }

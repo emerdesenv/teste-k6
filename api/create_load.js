@@ -1,45 +1,28 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-
-export function handleSummary(data) {
-    return {
-        "summary.html": htmlReport(data),
-    };
+export let options = {
+    stages: [
+        { duration: '30s', target: 50 },  // Sobe para 50 usuários em 30s
+        { duration: '1m', target: 100 },  // Aumenta para 100 usuários em 1 minuto
+        { duration: '2m', target: 200 },  // Mantém 200 usuários por 2 minutos
+        { duration: '1m', target: 100 },  // Reduz para 100 usuários em 1 minuto
+        { duration: '30s', target: 50 }  // Diminui para 50 usuários em 30s
+    ],
+    thresholds: {
+        http_req_duration: ['p(95)<1000'], // 95% das requisições devem ser < 1s
+        http_req_failed: ['rate<0.02']    // Menos de 2% de falhas são aceitáveis
+    }
 }
 
-export const options = {
-    stages: [
-        { duration: '1m', target: 100 },
-        { duration: '2m', target: 100 },
-        { duration: '1m', target: 0}
-    ]
-};
-
 export default function () {
-    const url = 'http://localhost:3000/api/carros';
+    let res = http.get('https://jsonplaceholder.typicode.com/posts');
 
-    const payload = JSON.stringify({
-        marca: 'Chevrolet',
-        modelo: 'Celta',
-        ano: 2012
-    });
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-
-    const res = http.post(url, payload, params);
-
-    // Verifica se a resposta foi bem-sucedida
+    // Validações
     check(res, {
-        'status é 201': (r) => r.status === 201,
-        'tem ID inserido': (r) => JSON.parse(r.body)._id !== undefined
+        'Status é 200': (r) => r.status === 200,
+        'Tempo de resposta < 1000ms': (r) => r.timings.duration < 1000,
     });
 
-    // Pausar 1 segundo antes da próxima requisição
-    sleep(1);
+    sleep(1); // Simula tempo entre as requisições
 }

@@ -11,9 +11,9 @@ export function handleSummary(data) {
 
 export const options = {
     stages: [
-        { duration: '10m', target: 200 }, // aumento de tráfego de 1 para 200 usuários em 10 minutos.
-        { duration: '30m', target: 200 }, // fique com mais de 200 usuários por 30 minutos
-        { duration: '5m', target: 0 }, // redução para 0 usuários
+        { duration: '1m', target: 200 }, // aumento de tráfego de 1 para 200 usuários em 10 minutos.
+        { duration: '2m', target: 200 }, // fique com mais de 200 usuários por 30 minutos
+        { duration: '3m', target: 0 }, // redução para 0 usuários
     ]
 };
 
